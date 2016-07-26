@@ -1,0 +1,30 @@
+Feature: main shop front item display
+The feature is implemented if:
+all available items in the shop are displayed
+As a user, I can browse through the shop menu and see a list of items
+
+Feature: Item search
+The feature is implemented if:
+search results are returned when a search is ran
+As a user, I can enter a search term and the app returns a list of items that match the search term
+
+Feature: Item details
+The feature is implemented if:
+item details are displayed when item is clicked in the shop page
+As a user, When I click on an item in the shop menu, I can see more detailed information about that item
+
+Feature: Shopping cart
+The feature is implemented if:
+The shopping cart displays all items contained in the cart
+The shopping cart is accessible at all times
+
+
+Feature: Add item to shopping cart
+The feature is implemented if:
+the selected item is added to the cart provided there is inventory
+As a user, When I click the add item to shopping cart button, the item I want is moved to the cart
+
+Feature: Remove item from shopping cart
+The feature is implemented if:
+the selected item is removed from the cart
+As a user, when I click the remove item from cart button, the item I want to remove is removed from the cart
