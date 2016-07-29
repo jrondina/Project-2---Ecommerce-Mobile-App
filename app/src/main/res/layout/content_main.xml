@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5ec79a"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.jamesrondina.project_2___ecommerce_mobile_app.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recycler"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:clipToPadding="false">
+
+</android.support.v7.widget.RecyclerView>
+</RelativeLayout>
