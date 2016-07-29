@@ -13,8 +13,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int VIEW_HEADER = 0;
     private static final int VIEW_NORMAL = 1;
 
-    private View headerView;
-    private View gridItem;
+    View headerView;
+    View gridItem;
     private int datasetSize;
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -22,7 +22,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(view);
         }
     }
-
 
     public ItemsAdapter(int size) {
         this.datasetSize = size;
@@ -49,7 +48,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         } else {
             gridItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlayout, parent, false);
-            return new ViewHolder(gridItem);
+            return new itemsHolder(gridItem);
         }
     }
 
@@ -58,8 +57,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (position == 0) return;
 
-        ViewHolder holder = (ViewHolder) viewHolder;
-        //holder.mView.setText("Position " + (position - 1));
+        itemsHolder holder = (itemsHolder) viewHolder;
 
     }
 }

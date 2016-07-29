@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
+
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -40,10 +41,16 @@ public class MainActivity extends AppCompatActivity {
         //set up header
         header = LayoutInflater.from(this).inflate(R.layout.shoptop, recyclerView, false);
 
+        //set up items adapter
+
         ItemsAdapter itemsAdapter = new ItemsAdapter(10); //TODO: change int to get number of items in list
         itemsAdapter.setHeader(header);
 
         recyclerView.setAdapter(itemsAdapter);
+
+        //set up alert dialog for item details
+
+
 
         //set up floating action button for shopping cart
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -57,5 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: Launch shopping cart
             }
         });
+
+
     }
+
 }
