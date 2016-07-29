@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(itemsAdapter);
 
-        //set up alert dialog for item details
+        //set up alert dialog for Item details
 
 
 
