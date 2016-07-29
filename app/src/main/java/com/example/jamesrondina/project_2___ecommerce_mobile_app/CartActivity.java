@@ -30,8 +30,8 @@ public class CartActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
         //TODO: adapter for items in cart
-        adapter = new itemAdapter(mCart.getCart());
-        mRecyclerView.setAdapter(adapter);
+        /*adapter = new itemAdapter(mCart.getCart());
+        mRecyclerView.setAdapter(adapter);*/
 
         Button checkout = (Button) findViewById(R.id.checkout);
         checkout.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +39,7 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //buy items, and empty the cart
                 Toast.makeText(CartActivity.this, "You bought the stuff!", Toast.LENGTH_SHORT).show();
-                mCart.clearCart();
+                //mCart.clearCart();
             }
         });
     }

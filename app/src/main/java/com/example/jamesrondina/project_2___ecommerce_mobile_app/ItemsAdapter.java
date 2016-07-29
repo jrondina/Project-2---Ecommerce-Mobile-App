@@ -19,7 +19,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     View headerView;
     View gridItem;
-    Cart cart;
+    Items mItems;
     private int datasetSize;
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -61,6 +61,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 
         if (position == 0) return;
+
+        final int pos = position;
+        final Item item =
+
 
         itemsHolder holder = (itemsHolder) viewHolder;
 
