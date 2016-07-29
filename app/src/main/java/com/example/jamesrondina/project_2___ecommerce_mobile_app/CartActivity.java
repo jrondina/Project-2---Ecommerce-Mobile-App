@@ -22,28 +22,26 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler2);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        int index = getIntent().getIntExtra("listPosition", 0);
-        mPokeList = PokeGroup.getGroup().mPokeList.get(index);
-
-        adapter = new itemAdapter(mCart.getmCart());
+        //TODO: adapter for items in cart
+        adapter = new itemAdapter(mCart.getCart());
         mRecyclerView.setAdapter(adapter);
 
         Button checkout = (Button) findViewById(R.id.checkout);
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //buy items, and empty the cart
                 Toast.makeText(CartActivity.this, "You bought the stuff!", Toast.LENGTH_SHORT).show();
-                //TODO: Clear shopping cart
+                mCart.clearCart();
             }
         });
     }
 
 }
-

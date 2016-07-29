@@ -7,8 +7,10 @@ import java.util.List;
  * Created by jamesrondina on 7/28/16.
  */
 public class Cart {
-    private static Cart ourInstance = new Cart();
+
     List<Item> cart;
+    private static Cart ourInstance = new Cart();
+
 
     public static Cart getInstance() {
         if (ourInstance == null) {
@@ -31,5 +33,9 @@ public class Cart {
 
     public void removeItem(Item item) {
         cart.remove(item);
+    }
+
+    public void clearCart() {
+        cart.clear();
     }
 }

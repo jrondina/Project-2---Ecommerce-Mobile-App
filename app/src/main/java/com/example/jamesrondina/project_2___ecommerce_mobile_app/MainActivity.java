@@ -1,5 +1,6 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,14 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         //set up items adapter
 
-        ItemsAdapter itemsAdapter = new ItemsAdapter(10); //TODO: change int to get number of items in list
+        ItemsAdapter itemsAdapter = new ItemsAdapter(12); //TODO: change int to get number of items in list
+                                                          //cursor.getCount()
         itemsAdapter.setHeader(header);
 
         recyclerView.setAdapter(itemsAdapter);
 
-        //set up alert dialog for Item details
-
-
+        //TODO: set up alert dialog for Item details
 
         //set up floating action button for shopping cart
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -58,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Launch Shopping Cart", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Launch Shopping Cart", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
 
                 //TODO: Launch shopping cart
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
             }
         });
 
