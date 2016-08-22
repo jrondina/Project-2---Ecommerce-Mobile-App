@@ -19,7 +19,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     View headerView;
     View gridItem;
-    Items mItems;
+    Cart cart;
     private int datasetSize;
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -61,10 +61,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 
         if (position == 0) return;
-
-        final int pos = position;
-        final Item item =
-
 
         itemsHolder holder = (itemsHolder) viewHolder;
 
@@ -123,7 +119,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 return android.R.drawable.ic_menu_add;
             case "200 Pokeballs":
                 return android.R.drawable.ic_menu_upload;
-            case "Incense":
+            case "":
                 return android.R.drawable.ic_media_play;
             default:
                 return 0;

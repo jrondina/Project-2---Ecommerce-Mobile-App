@@ -20,6 +20,7 @@
         android:textSize="20dp"
         android:layout_centerVertical="true"
         android:id="@+id/cart_itemPrice"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/button_remove"
         />
     <Button
