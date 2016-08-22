@@ -4,29 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <ImageView
+        android:id="@+id/cartItemPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cart_itemName"
-        android:textSize="20dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/cart_itemName" />
+        android:src="@mipmap/pokeballs20"
+        android:contentDescription="cart item picture"
+        android:layout_margin="5dp" />
 
     <TextView
+        android:id="@+id/cartItemName"
+        android:text="itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cart_itemPrice"
-        android:textSize="20dp"
+        android:layout_below="@id/cartItemPic"
+        android:layout_marginLeft="5dp" />
+
+    <LinearLayout
+        android:id="@+id/cartInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_centerVertical="true"
-        android:id="@+id/cart_itemPrice"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/button_remove"
-        />
-    <Button
+        android:layout_toRightOf="@+id/cartItemName"
+        android:layout_toEndOf="@+id/cartItemName">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/pokecoin"
+            android:maxWidth="20dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:id="@+id/cartItemPrice"
+            android:text="itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/cartItemPic"
+            android:layout_toEndOf="@+id/cartItemPic"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quantityLayout"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove"
-        android:id="@+id/button_remove"
-        android:layout_alignParentRight="true"/>
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp">
+        <TextView
+            android:id="@+id/cartQuantity"
+            android:text="Quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+        <EditText
+            android:id="@+id/cartEditQuantity"
+            android:hint="qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/quantityLayout"
+        android:layout_toStartOf="@+id/quantityLayout"
+        android:src="@android:drawable/ic_delete"
+        android:layout_marginRight="5dp" />
+
+
 </RelativeLayout>

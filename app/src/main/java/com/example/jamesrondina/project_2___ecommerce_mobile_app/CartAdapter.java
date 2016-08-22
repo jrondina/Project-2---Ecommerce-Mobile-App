@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
 
-    List<Item> mItems;
+    List<Item> mCartItems;
 
     public CartAdapter(List<Item> items){
-        this.mItems = items;
+        this.mCartItems = items;
     }
 
     @Override

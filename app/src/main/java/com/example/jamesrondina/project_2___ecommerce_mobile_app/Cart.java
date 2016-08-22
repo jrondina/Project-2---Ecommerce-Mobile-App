@@ -1,5 +1,6 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,9 +9,8 @@ import java.util.List;
  */
 public class Cart {
 
-    List<Item> cart;
+    ArrayList<Item> cart;
     private static Cart ourInstance = new Cart();
-
 
     public static Cart getInstance() {
         if (ourInstance == null) {
@@ -20,10 +20,10 @@ public class Cart {
     }
 
     private Cart() {
-        this.cart = new LinkedList<>();
+        this.cart = new ArrayList<Item>();
     }
 
-    public List<Item> getCart() {
+    public ArrayList<Item> getCart() {
         return cart;
     }
 

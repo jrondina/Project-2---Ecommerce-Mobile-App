@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@android:drawable/ic_lock_lock"
+        android:src="@mipmap/pokeballs100"
         android:id="@+id/itemPic"
         android:layout_centerHorizontal="true"
         />
@@ -37,18 +38,19 @@
 
         <ImageView
             android:id="@+id/image_coins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@mipmap/pokecoin"
 
-            />
+            android:maxHeight="12dp"
+            android:maxWidth="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/itemPrice"
             android:text="itemPrice"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             />

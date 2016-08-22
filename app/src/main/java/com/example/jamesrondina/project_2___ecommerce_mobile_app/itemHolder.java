@@ -10,14 +10,16 @@ import android.widget.TextView;
  */
 public class itemHolder extends RecyclerView.ViewHolder{
 
+    ImageView mItemPic;
     TextView mItemName;
     TextView mItemPrice;
 
     public itemHolder(View itemView) {
         super(itemView);
 
-        mItemName = (TextView) itemView.findViewById(R.id.cart_itemName);
-        mItemPrice = (TextView) itemView.findViewById(R.id.cart_itemPrice);
+        mItemPic = (ImageView) itemView.findViewById(R.id.itemPic);
+        mItemName = (TextView) itemView.findViewById(R.id.itemName);
+        mItemPrice = (TextView) itemView.findViewById(R.id.itemPrice);
     }
 
 }

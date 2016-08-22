@@ -16,8 +16,8 @@ public class CartHolder extends RecyclerView.ViewHolder {
     public CartHolder(View itemView) {
         super(itemView);
 
-        mName = (TextView) itemView.findViewById(R.id.cart_itemName);
-        mPrice = (TextView) itemView.findViewById(R.id.cart_itemPrice);
+        mName = (TextView) itemView.findViewById(R.id.cartItemName);
+        mPrice = (TextView) itemView.findViewById(R.id.cartItemPrice);
 
     }
 }
