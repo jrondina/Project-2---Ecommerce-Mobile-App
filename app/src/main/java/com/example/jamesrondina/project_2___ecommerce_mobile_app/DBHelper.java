@@ -8,9 +8,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class ItemSQLiteOpenHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
     
-    private static final String TAG = ItemSQLiteOpenHelper.class.getCanonicalName();
+    private static final String TAG = DBHelper.class.getCanonicalName();
 
     private static final int DATABASE_VERSION = 9;
     public static final String DATABASE_NAME = "shop.db";
@@ -32,16 +32,16 @@ public class ItemSQLiteOpenHelper extends SQLiteOpenHelper {
                     COL_ITEM_PRICE + " INT )";
 
 
-    private static ItemSQLiteOpenHelper instance;
+    private static DBHelper instance;
 
-    public static ItemSQLiteOpenHelper getInstance(Context context){
+    public static DBHelper getInstance(Context context){
         if(instance == null){
-            instance = new ItemSQLiteOpenHelper(context);
+            instance = new DBHelper(context);
         }
         return instance;
     }
 
-    private ItemSQLiteOpenHelper(Context context) {
+    private DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

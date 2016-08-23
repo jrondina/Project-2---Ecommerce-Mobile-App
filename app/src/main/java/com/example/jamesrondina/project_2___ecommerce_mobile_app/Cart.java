@@ -10,11 +10,12 @@ import java.util.List;
 public class Cart {
 
     ArrayList<Item> cart;
+
     private static Cart ourInstance = new Cart();
 
     public static Cart getInstance() {
         if (ourInstance == null) {
-        ourInstance = new Cart();
+            ourInstance = new Cart();
         }
         return ourInstance;
     }

@@ -18,7 +18,7 @@ public class CartActivity extends AppCompatActivity {
 
     Button mClear, mCheckout;
 
-    itemAdapter adapter;
+    CartAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class CartActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new itemAdapter(mCart.getCart());
+        adapter = new CartAdapter(mCart.getCart());
         mRecyclerView.setAdapter(adapter);
 
 

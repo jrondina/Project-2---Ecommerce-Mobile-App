@@ -1,5 +1,6 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,10 +9,9 @@ import java.util.List;
 
 public class ShopItems {
 
-    List<Item> mItems;
+    ArrayList<Item> mItems;
 
     private static ShopItems shopInstance = new ShopItems();
-
 
     public static ShopItems getInstance() {
         if (shopInstance == null) {
@@ -19,8 +19,4 @@ public class ShopItems {
         }
         return shopInstance;
     }
-
-
-
-
 }

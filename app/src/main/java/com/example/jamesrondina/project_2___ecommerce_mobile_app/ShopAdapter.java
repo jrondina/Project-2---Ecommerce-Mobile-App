@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by jamesrondina on 7/28/16.
  */
-public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int VIEW_HEADER = 0;
     private static final int VIEW_NORMAL = 1;
@@ -21,14 +23,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     View gridItem;
     Cart cart;
     private int datasetSize;
+    ArrayList<Item> shopItems;
 
+    //Set up Header on top of shop
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View view) {
             super(view);
         }
     }
 
-    public ItemsAdapter(int size) {
+    public ShopAdapter(int size) {
         this.datasetSize = size;
     }
 
@@ -53,7 +57,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         } else {
             gridItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlayout, parent, false);
-            return new itemsHolder(gridItem);
+            return new ShopHolder(gridItem);
         }
     }
 
@@ -62,9 +66,14 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (position == 0) return;
 
-        itemsHolder holder = (itemsHolder) viewHolder;
+        //Item item = shopItems.get(position);
+
+        ShopHolder holder = (ShopHolder) viewHolder;
 
         //TODO: setup attributes of item, either switch case here or make helper method
+        /*holder.setItemPic(item.getmPic());
+        holder.setItemName(item.getmName());
+        holder.setItemPrice(item.getmPrice());*/
 
         //TODO: clicklistener to launch details dialog
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -111,20 +120,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return builder.create();
     }
 
-    private int getDrawableValue(String icon){
-        switch(icon){
-            case "20 Pokeballs":
-                return android.R.drawable.ic_menu_search;
-            case "100 Pokeballs":
-                return android.R.drawable.ic_menu_add;
-            case "200 Pokeballs":
-                return android.R.drawable.ic_menu_upload;
-            case "":
-                return android.R.drawable.ic_media_play;
-            default:
-                return 0;
-        }
-    }
 }
 
 

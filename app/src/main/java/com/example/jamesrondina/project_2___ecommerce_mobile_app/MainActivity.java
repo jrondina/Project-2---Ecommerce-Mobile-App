@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     View header;
+    Cart mCart;
+
     int columns = 3;
 
     @Override
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mCart = Cart.getInstance();
 
         //set up recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -40,14 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
         //set up header
         header = LayoutInflater.from(this).inflate(R.layout.shoptop, recyclerView, false);
-
         //set up items adapter
 
-        ItemsAdapter itemsAdapter = new ItemsAdapter(12); //TODO: change int to get number of items in list
+        ShopAdapter shopAdapter = new ShopAdapter(12); //TODO: change int to get number of items in list
                                                           //cursor.getCount()
-        itemsAdapter.setHeader(header);
+        shopAdapter.setHeader(header);
 
-        recyclerView.setAdapter(itemsAdapter);
+        recyclerView.setAdapter(shopAdapter);
 
         //TODO: set up alert dialog for Item details
 
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 /*Snackbar.make(view, "Launch Shopping Cart", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
-                //TODO: Launch shopping cart
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 startActivity(intent);
             }
