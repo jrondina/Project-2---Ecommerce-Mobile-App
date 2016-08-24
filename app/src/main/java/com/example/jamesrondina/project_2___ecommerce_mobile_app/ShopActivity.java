@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,24 +42,11 @@ public class ShopActivity extends AppCompatActivity {
 
         DBHelper helper = DBHelper.getInstance(this);
 
-        /*TODO: TEST CODE
-        Cursor cursor = helper.getItemList();
-
-        Log.i("DATABASE", "onCreate: " + cursor.getCount());
-
-        cursor.moveToFirst();
-        while (cursor.isAfterLast() == false) {
-            Log.d("DBDEBUG", "DB result " + cursor.getString(0)+" "+cursor.getString(1));
-
-            cursor.moveToNext();
-        }
-
-        cursor.close();
-        END TEST CODE*/
-
         //TODO: build list of items to show by getting from dbhelper
         itemList = new ArrayList<Item>();
         debugList();
+        searchQuery = "*";
+        //itemList = helper.getShopListFromDB(searchQuery);
 
         //TODO: search changes the list of items by inserting query string into query and builds a new list
 
@@ -85,6 +74,27 @@ public class ShopActivity extends AppCompatActivity {
         searchEdit = (EditText) header.findViewById(R.id.search);
         searchQuery = searchEdit.getText().toString();
 
+        searchEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //get query from edit text and then query database to filter results
+                searchQuery = searchEdit.getText().toString();
+
+                //TODO: db query
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         //set up items adapter
 
         ShopAdapter shopAdapter = new ShopAdapter(itemList.size(), itemList); //TODO: change int to get number of items in list
@@ -111,18 +121,20 @@ public class ShopActivity extends AppCompatActivity {
 
     }
 
+    //for debugging only, comment out at the top later
+
     public void debugList() {
-        Item pokeball20 = new Item("pokeball","throw it", 100, R.mipmap.pokeballs20);
-        Item pokeball100 = new Item("pokeball100","throw it", 400, R.mipmap.pokeballs100);
-        Item pokeball200 = new Item("pokeball200","throw it 100", 800, R.mipmap.pokeballs200);
-        Item incense = new Item("incense","use this",100, R.mipmap.incense);
-        Item incense8 = new Item("8 incense","use this",100, R.mipmap.incense8);
-        Item incense25 = new Item("25 incense","use this",100, R.mipmap.incense25);
-        Item luckyegg = new Item("luckegg","use this",100, R.mipmap.luckyegg);
-        Item luckyegg8 = new Item("8 Lucky Egg","use this",100, R.mipmap.luckyeggs8);
-        Item luckyegg25 = new Item("25 Lucky Egg","use this",100, R.mipmap.luckyeggs25);
-        Item lure = new Item("incense","use this",100, R.mipmap.luremodule);
-        Item lure8 = new Item("incense","use this",100, R.mipmap.luremodules8);
+        Item pokeball20 = new Item("20 Pokeballs","throw it", 100, R.mipmap.pokeballs20);
+        Item pokeball100 = new Item("100 Pokeball","throw it", 400, R.mipmap.pokeballs100);
+        Item pokeball200 = new Item("200 Pokeball","throw it 100", 800, R.mipmap.pokeballs200);
+        Item incense = new Item("Incense","use this to attract pokemon",100, R.mipmap.incense);
+        Item incense8 = new Item("8 incense","use this to attract pokemon",300, R.mipmap.incense8);
+        Item incense25 = new Item("25 incense","use this to attract pokemon",900, R.mipmap.incense25);
+        Item luckyegg = new Item("Lucky Egg","use this",100, R.mipmap.luckyegg);
+        Item luckyegg8 = new Item("8 Lucky Egg","use this",600, R.mipmap.luckyeggs8);
+        Item luckyegg25 = new Item("25 Lucky Egg","use this",1900, R.mipmap.luckyeggs25);
+        Item lure = new Item("Lure Module","use this on pokestops",100, R.mipmap.luremodule);
+        Item lure8 = new Item("8 Lures","use this on pokestops",100, R.mipmap.luremodules8);
         Item incub = new Item("Incubator","hatch eggs",500,R.mipmap.eggincubator);
 
         itemList.add(pokeball20);
@@ -137,10 +149,6 @@ public class ShopActivity extends AppCompatActivity {
         itemList.add(lure);
         itemList.add(lure8);
         itemList.add(incub);
-    }
-
-    public void dbGrab(){
-
     }
 
 }

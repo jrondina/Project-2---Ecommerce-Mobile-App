@@ -7,7 +7,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
 
@@ -108,24 +107,59 @@ public class DBHelper extends SQLiteOpenHelper {
                 R.mipmap.incense8, R.mipmap.incense25, R.mipmap.luckyegg, R.mipmap.luckyeggs8, R.mipmap.luckyeggs25,
                 R.mipmap.luremodule, R.mipmap.luremodules8, R.mipmap.eggincubator};
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS ITEM_LIST (name VARCHAR, desc VARCHAR, price VARCHAR);");
+        //db.execSQL("CREATE TABLE IF NOT EXISTS ITEM_LIST (name VARCHAR, desc VARCHAR, price VARCHAR, price VARCHAR, use VARCHAR, consume VARCHAR, pic VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + ITEM_LIST_TABLE_NAME + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_ITEM_NAME + " TEXT " +
+                COL_ITEM_DESC + " TEXT " +
+                COL_ITEM_PRICE + " INT" +
+                COL_ITEM_USE + " TEXT " +
+                COL_ITEM_CONSUMABLE + " INT " +
+                COL_ITEM_PIC + " INT )");
+
+
         for (int i = 0; i < names.length; i++) {
             db.execSQL("INSERT INTO ITEM_LIST Values ('" + names[i] + "', '" + descs[i] + "', '" + prices[i] +
                     "', '" + uses[i] + "', '" + consume[i] + "', '" + pics[i] + "');");
         }
     }
 
-    public List<Item> dbItems(){
+    public List<Item> getShopListFromDB(String query){
         //Go through database, create an Item for each row, place in list
 
-        List<Item> shopList = new ArrayList<>(10); //TODO: change size to db size
+        List<Item> shopList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
 
-        //while not at the end of db, create a new item and then add it to list
+        //searchquery checks name, desc and use, thus fulfilling the at least 3 product criteria requirement
+        String searchQuery = "SELECT * FROM " +
+                ITEM_LIST_TABLE_NAME + "WHERE " + COL_ITEM_NAME + " LIKE " + "%" + query + "%" +
+                " OR " + "WHERE " + COL_ITEM_DESC + " LIKE " + "%" + query + "%" +
+                " OR " + "WHERE " + COL_ITEM_USE + " LIKE " + "%" + query + "%";
+        Cursor cursor = db.rawQuery(searchQuery, null);
+
+        if(cursor.moveToFirst()){
+            while (!cursor.isAfterLast()) {
+                Item item = new Item("Name","Desc",0,R.mipmap.pokeballs20);
+                dbItemAttributes(cursor,item);
+
+                cursor.moveToNext();
+
+            }
+            cursor.close();
+        }
 
         return shopList;
 
+    }
 
+    private void dbItemAttributes(Cursor cursor, Item item){
 
+        //sets item attributes for item taken from db to be put into list for use in the ShopAdapter
+
+        item.setmName(cursor.getString(cursor.getColumnIndex(COL_ITEM_NAME)));
+        item.setmDesc(cursor.getString(cursor.getColumnIndex(COL_ITEM_DESC)));
+        item.setmPrice(cursor.getInt(cursor.getColumnIndex(COL_ITEM_PRICE)));
+        item.setmPic(cursor.getInt(cursor.getColumnIndex(COL_ITEM_PIC)));
     }
 
 }

@@ -60,6 +60,4 @@ public class CartItem extends Item {
     public void setmPic(int mPic) {
         this.mPic = mPic;
     }
-
-
 }
