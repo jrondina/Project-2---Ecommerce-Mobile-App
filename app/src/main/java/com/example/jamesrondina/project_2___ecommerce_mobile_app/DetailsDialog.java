@@ -66,7 +66,13 @@ public class DetailsDialog {
     }
 
     public CartItem itemConvert(Item item){
-         return new CartItem(item.getmName(),item.getmDesc(),item.getmPrice(),item.getmPic());
+        CartItem cartItem = new CartItem(item.getmName(),item.getmDesc(),item.getmPrice(),item.getmPic());
+        cartItem.setmName(item.getmName());
+        cartItem.setmDesc(item.getmDesc());
+        cartItem.setmPrice(item.getmPrice());
+        cartItem.setmPic(item.getmPic());
+
+        return cartItem;
 
     }
 }

@@ -86,6 +86,7 @@ public class CartActivity extends AppCompatActivity {
 
         mClear.setOnClickListener(listener);
         mCheckout.setOnClickListener(listener);
+        mBack.setOnClickListener(listener);
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler2);

@@ -9,8 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/pokeballs20"
+        android:maxWidth="28dp"
+        android:maxHeight="28dp"
         android:contentDescription="cart item picture"
-        android:layout_margin="5dp" />
+        android:layout_alignTop="@+id/cartInfo"
+        android:layout_alignBottom="@+id/remove"
+        android:layout_alignLeft="@+id/cartItemName"
+        android:layout_alignStart="@+id/cartItemName" />
 
     <TextView
         android:id="@+id/cartItemName"
@@ -25,9 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/cartItemName"
-        android:layout_toEndOf="@+id/cartItemName">
+        android:paddingLeft="20dp"
+        android:layout_centerInParent="true">
 
         <ImageView
             android:layout_width="30dp"

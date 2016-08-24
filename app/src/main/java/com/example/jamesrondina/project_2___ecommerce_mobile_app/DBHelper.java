@@ -37,11 +37,11 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + ITEM_LIST_TABLE_NAME +
                     "(" +
                     COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL_ITEM_NAME + " TEXT " +
-                    COL_ITEM_DESC + " TEXT " +
-                    COL_ITEM_PRICE + " INT" +
-                    COL_ITEM_USE + " TEXT " +
-                    COL_ITEM_CONSUMABLE + " INT " +
+                    COL_ITEM_NAME + " TEXT, " +
+                    COL_ITEM_DESC + " TEXT, " +
+                    COL_ITEM_PRICE + " INT, " +
+                    COL_ITEM_USE + " TEXT, " +
+                    COL_ITEM_CONSUMABLE + " INT, " +
                     COL_ITEM_PIC + " INT )";
 
     private static DBHelper instance;
@@ -87,12 +87,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private void buildTable(SQLiteDatabase db) {
 
         //entering data into table
+        int[] ids = new int[]{1,2,3,4,5,6,7,8,9,10,11,12};
+
         String[] names = new String[]{"20 Pokeballs", "100 Pokeballs", "200 Pokeballs",
                 "Incense", "8 Incense", "25 Incense", "Lucky Egg", "8 Lucky Eggs", "25 Lucky Eggs",
                 "Lure Module", "8 Lure Modules", "Egg Incubator"};
 
         String[] descs = new String[]{"Balls for catching Pokemon", "100 Balls for catching Pokemon",
-                "100 of balls for catching Pokemon", "Use to attract Pokemon", "Use to attract Pokemon",
+                "200 balls for catching Pokemon", "Use to attract Pokemon", "Use to attract Pokemon", "Use to attract Pokemon",
                 "Use to double EXP", "Use to double EXP", "Use to double EXP", "Use on Pokestop to attract Pokemon",
                 "Use on Pokestop to attract Pokemon", "Use to hatch eggs by walking"};
 
@@ -119,7 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         for (int i = 0; i < names.length; i++) {
-            db.execSQL("INSERT INTO ITEM_LIST Values ('" + names[i] + "', '" + descs[i] + "', '" + prices[i] +
+            db.execSQL("INSERT INTO ITEM_LIST Values ('" + ids[i] + "', '" + names[i] + "', '" + descs[i] + "', '" + prices[i] +
                     "', '" + uses[i] + "', '" + consume[i] + "', '" + pics[i] + "');");
         }
     }
@@ -132,16 +134,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //searchquery checks name, desc and use, thus fulfilling the at least 3 product criteria requirement
         String searchQuery = "SELECT * FROM " +
-                ITEM_LIST_TABLE_NAME + "WHERE " + COL_ITEM_NAME + " LIKE " + "%" + query + "%" +
-                " OR " + "WHERE " + COL_ITEM_DESC + " LIKE " + "%" + query + "%" +
-                " OR " + "WHERE " + COL_ITEM_USE + " LIKE " + "%" + query + "%";
+                ITEM_LIST_TABLE_NAME + " WHERE " + COL_ITEM_NAME + " LIKE " + "'%" + query + "%'" +
+                " OR " + COL_ITEM_DESC + " LIKE " + "'%" + query + "%'" +
+                " OR " + COL_ITEM_USE + " LIKE " + "'%" + query + "%'";
         Cursor cursor = db.rawQuery(searchQuery, null);
 
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
                 Item item = new Item("Name","Desc",0,R.mipmap.pokeballs20);
                 dbItemAttributes(cursor,item);
-
+                shopList.add(item);
                 cursor.moveToNext();
 
             }

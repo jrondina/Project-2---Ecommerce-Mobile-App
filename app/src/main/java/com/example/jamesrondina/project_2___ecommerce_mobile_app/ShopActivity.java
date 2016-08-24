@@ -29,10 +29,11 @@ public class ShopActivity extends AppCompatActivity {
     public List<Item> itemList;
 
     private TextView walletText;
-    private int gold = 1000;
+    private int gold;
 
     private EditText searchEdit;
     public String searchQuery;
+    private ShopAdapter shopAdapter;
 
 
     @Override
@@ -40,16 +41,17 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DBHelper helper = DBHelper.getInstance(this);
+        //give you some money to spend
+        if(gold==0) {
+            gold = 12000;
+        }
 
-        //TODO: build list of items to show by getting from dbhelper
+        final DBHelper helper = DBHelper.getInstance(this);
+
         itemList = new ArrayList<Item>();
-        debugList();
-        searchQuery = "*";
-        //itemList = helper.getShopListFromDB(searchQuery);
-
-        //TODO: search changes the list of items by inserting query string into query and builds a new list
-
+        //debugList();
+        searchQuery = "";
+        itemList = helper.getShopListFromDB(searchQuery);
 
         //set up recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -86,6 +88,9 @@ public class ShopActivity extends AppCompatActivity {
                 searchQuery = searchEdit.getText().toString();
 
                 //TODO: db query
+                itemList = helper.getShopListFromDB(searchQuery);
+                shopAdapter.notifyDataSetChanged();
+
 
             }
 
@@ -97,7 +102,8 @@ public class ShopActivity extends AppCompatActivity {
 
         //set up items adapter
 
-        ShopAdapter shopAdapter = new ShopAdapter(itemList.size(), itemList); //TODO: change int to get number of items in list
+        //TODO: change int to get number of items in list
+        shopAdapter = new ShopAdapter(itemList.size(), itemList);
         shopAdapter.setHeader(header);
         recyclerView.setAdapter(shopAdapter);
 
@@ -115,6 +121,8 @@ public class ShopActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 intent.putExtra("wallet",gold);
                 startActivityForResult(intent,0);
+                gold = intent.getIntExtra("wallet",10000);
+
             }
         });
 
@@ -124,18 +132,18 @@ public class ShopActivity extends AppCompatActivity {
     //for debugging only, comment out at the top later
 
     public void debugList() {
-        Item pokeball20 = new Item("20 Pokeballs","throw it", 100, R.mipmap.pokeballs20);
-        Item pokeball100 = new Item("100 Pokeball","throw it", 400, R.mipmap.pokeballs100);
-        Item pokeball200 = new Item("200 Pokeball","throw it 100", 800, R.mipmap.pokeballs200);
-        Item incense = new Item("Incense","use this to attract pokemon",100, R.mipmap.incense);
-        Item incense8 = new Item("8 incense","use this to attract pokemon",300, R.mipmap.incense8);
-        Item incense25 = new Item("25 incense","use this to attract pokemon",900, R.mipmap.incense25);
-        Item luckyegg = new Item("Lucky Egg","use this",100, R.mipmap.luckyegg);
-        Item luckyegg8 = new Item("8 Lucky Egg","use this",600, R.mipmap.luckyeggs8);
-        Item luckyegg25 = new Item("25 Lucky Egg","use this",1900, R.mipmap.luckyeggs25);
-        Item lure = new Item("Lure Module","use this on pokestops",100, R.mipmap.luremodule);
-        Item lure8 = new Item("8 Lures","use this on pokestops",100, R.mipmap.luremodules8);
-        Item incub = new Item("Incubator","hatch eggs",500,R.mipmap.eggincubator);
+        Item pokeball20 = new Item("20 Pokeballs","A ball for catching Pokemon", 100, R.mipmap.pokeballs20);
+        Item pokeball100 = new Item("100 Pokeball","A ball for catching Pokemon", 400, R.mipmap.pokeballs100);
+        Item pokeball200 = new Item("200 Pokeball","A ball for catching Pokemon", 800, R.mipmap.pokeballs200);
+        Item incense = new Item("Incense","Use this to attract pokemon",100, R.mipmap.incense);
+        Item incense8 = new Item("8 incense","Use this to attract pokemon",300, R.mipmap.incense8);
+        Item incense25 = new Item("25 incense","Use this to attract pokemon",900, R.mipmap.incense25);
+        Item luckyegg = new Item("Lucky Egg","Double your EXP gain",100, R.mipmap.luckyegg);
+        Item luckyegg8 = new Item("8 Lucky Egg","Double your EXP gain",600, R.mipmap.luckyeggs8);
+        Item luckyegg25 = new Item("25 Lucky Egg","Double your EXP gain",1900, R.mipmap.luckyeggs25);
+        Item lure = new Item("Lure Module","Attract Pokemon to Pokestops",100, R.mipmap.luremodule);
+        Item lure8 = new Item("8 Lures","Attract Pokemon to Pokestops",100, R.mipmap.luremodules8);
+        Item incub = new Item("Incubator","Hatch Eggs",500,R.mipmap.eggincubator);
 
         itemList.add(pokeball20);
         itemList.add(pokeball100);
