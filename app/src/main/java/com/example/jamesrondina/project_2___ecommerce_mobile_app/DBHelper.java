@@ -19,9 +19,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_ID = "_id";
     public static final String COL_ITEM_NAME = "ITEM_NAME";
     public static final String COL_ITEM_DESC = "ITEM_DESC";
-    public static final String COL_ITEM_PRICE ="ITEM_PRICE";
+    public static final String COL_ITEM_PRICE = "ITEM_PRICE";
+    public static final String COL_ITEM_USE = "ITEM_TYPE";
+    public static final String COL_ITEM_CONSUMABLE = "ITEM_CONSUMABLE";
+    public static final String COL_ITEM_PIC = "ITEM_PIC";
 
-    public static final String[] ITEM_COLUMNS = {COL_ID,COL_ITEM_NAME,COL_ITEM_DESC,COL_ITEM_PRICE};
+
+    public static final String[] ITEM_COLUMNS =
+            {COL_ID,COL_ITEM_NAME,COL_ITEM_DESC,COL_ITEM_PRICE,COL_ITEM_USE,COL_ITEM_CONSUMABLE,COL_ITEM_PIC};
 
     private static final String CREATE_ITEM_LIST_TABLE =
             "CREATE TABLE " + ITEM_LIST_TABLE_NAME +
@@ -29,8 +34,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_ITEM_NAME + " TEXT " +
                     COL_ITEM_DESC + " TEXT " +
-                    COL_ITEM_PRICE + " INT )";
-
+                    COL_ITEM_PRICE + " INT" +
+                    COL_ITEM_USE + " TEXT " +
+                    COL_ITEM_CONSUMABLE + " INT " +
+                    COL_ITEM_PIC + " INT )";
 
     private static DBHelper instance;
 
@@ -72,23 +79,31 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
     private void buildTable(SQLiteDatabase db) {
-
         String[] names = new String[]{"20 Pokeballs", "100 Pokeballs", "200 Pokeballs",
                 "Incense", "8 Incense", "25 Incense", "Lucky Egg", "8 Lucky Eggs", "25 Lucky Eggs",
                 "Lure Module", "8 Lure Modules", "Egg Incubator"};
 
-        String[] descs = new String[]{"Balls for catching Pokemon", "More Balls for catching Pokemon",
-                "A lot of balls for catching Pokemon", "Use to attract Pokemon", "Use to attract Pokemon",
+        String[] descs = new String[]{"Balls for catching Pokemon", "100 Balls for catching Pokemon",
+                "100 of balls for catching Pokemon", "Use to attract Pokemon", "Use to attract Pokemon",
                 "Use to double EXP", "Use to double EXP", "Use to double EXP", "Use on Pokestop to attract Pokemon",
                 "Use on Pokestop to attract Pokemon", "Use to hatch eggs by walking"};
 
         int[] prices = new int[]{100, 460, 800, 80, 500, 1250, 80, 500, 1250, 100, 680, 150};
+
+        String[] uses = new String[]{"Catch", "Catch", "Catch", "Bait", "Bait", "Bait", "EXP", "EXP",
+        "EXP", "Bait", "Bait", "Hatch"};
+
+        int[] consume = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0};
+
+        int[] pics = new int[]{R.mipmap.pokeballs20, R.mipmap.pokeballs100, R.mipmap.pokeballs200, R.mipmap.incense,
+                R.mipmap.incense8, R.mipmap.incense25, R.mipmap.luckyegg, R.mipmap.luckyeggs8, R.mipmap.luckyeggs25,
+                R.mipmap.luremodule, R.mipmap.luremodules8, R.mipmap.eggincubator};
+
         db.execSQL("CREATE TABLE IF NOT EXISTS ITEM_LIST (name VARCHAR, desc VARCHAR, price VARCHAR);");
         for (int i = 0; i < names.length; i++) {
-            db.execSQL("INSERT INTO ITEM_LIST Values ('" + names[i] + "', '" + descs[i] + "', '" + prices[i] + "');");
-
+            db.execSQL("INSERT INTO ITEM_LIST Values ('" + names[i] + "', '" + descs[i] + "', '" + prices[i] +
+                    "', '" + uses[i] + "', '" + consume[i] + "', '" + pics[i] + "');");
         }
     }
 }

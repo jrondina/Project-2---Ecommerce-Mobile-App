@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
 import java.util.List;
 
 /**

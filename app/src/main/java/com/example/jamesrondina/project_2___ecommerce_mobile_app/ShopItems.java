@@ -1,7 +1,8 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jamesrondina on 7/29/16.

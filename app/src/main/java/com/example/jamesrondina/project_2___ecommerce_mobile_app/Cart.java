@@ -1,15 +1,15 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by jamesrondina on 7/28/16.
  */
 public class Cart {
 
-    ArrayList<Item> cart;
+    ArrayList<Item> cartList;
 
     private static Cart ourInstance = new Cart();
 
@@ -21,22 +21,22 @@ public class Cart {
     }
 
     private Cart() {
-        this.cart = new ArrayList<Item>();
+        this.cartList = new ArrayList<Item>();
     }
 
     public ArrayList<Item> getCart() {
-        return cart;
+        return cartList;
     }
 
     public void addItem(Item item) {
-        cart.add(item);
+        cartList.add(item);
     }
 
     public void removeItem(Item item) {
-        cart.remove(item);
+        cartList.remove(item);
     }
 
     public void clearCart() {
-        cart.clear();
+        cartList.clear();
     }
 }

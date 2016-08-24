@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jamesrondina on 7/28/16.
@@ -23,7 +26,7 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     View gridItem;
     Cart cart;
     private int datasetSize;
-    ArrayList<Item> shopItems;
+    List<Item> shopItems;
 
     //Set up Header on top of shop
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -50,6 +53,7 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return datasetSize + 1;
     }
 
+    //checks if element is a header or an item in order to show the appropriate layout
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_HEADER) {
@@ -89,6 +93,7 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
+    /*
     private AlertDialog launchItemDetail(final Item item, View view){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -119,6 +124,7 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         return builder.create();
     }
+    */
 
 }
 

@@ -8,22 +8,32 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
+import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ShopActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    View header;
-    Cart mCart;
+    private RecyclerView recyclerView;
+    private View header;
+    private int columns = 3;
+    public List<Item> itemList;
 
-    int columns = 3;
+    private TextView walletText;
+    private int gold = 1000;
+
+    private EditText searchEdit;
+    public String searchQuery;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mCart = Cart.getInstance();
 
         //set up recyclerView
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -43,12 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
         //set up header
         header = LayoutInflater.from(this).inflate(R.layout.shoptop, recyclerView, false);
+        walletText = (TextView) header.findViewById(R.id.shopwallet);
+        walletText.setText(String.valueOf(gold));
+        searchEdit = (EditText) header.findViewById(R.id.search);
+        searchQuery = searchEdit.getText().toString();
+
         //set up items adapter
 
         ShopAdapter shopAdapter = new ShopAdapter(12); //TODO: change int to get number of items in list
-                                                          //cursor.getCount()
         shopAdapter.setHeader(header);
-
         recyclerView.setAdapter(shopAdapter);
 
         //TODO: set up alert dialog for Item details
@@ -63,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();*/
 
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                intent.putExtra("wallet",gold);
                 startActivity(intent);
             }
         });

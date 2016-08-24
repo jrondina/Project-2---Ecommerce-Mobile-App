@@ -7,8 +7,8 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@android:drawable/ic_lock_lock"
-        android:id="@+id/itemPic"
+        android:src="@mipmap/pokeballs20"
+        android:id="@+id/dialogPic"
         android:layout_centerHorizontal="true"
         />
 
@@ -18,23 +18,23 @@
         android:layout_marginBottom="5dp"
         android:text="itemName"
         android:textSize="18dp"
-        android:id="@+id/itemName"
-        android:layout_below="@+id/itemPic"
+        android:id="@+id/dialogName"
+        android:layout_below="@+id/dialogPic"
         android:layout_centerHorizontal="true"
         />
 
     <TextView
-        android:id="@+id/itemDesc"
+        android:id="@+id/dialogDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/itemName"
+        android:layout_below="@id/dialogName"
         android:layout_centerHorizontal="true"
         android:text="itemDesc"
         />
 
     <LinearLayout
         android:id="@+id/price_layout"
-        android:layout_below="@+id/itemDesc"
+        android:layout_below="@+id/dialogDesc"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,13 +46,14 @@
 
         <ImageView
             android:id="@+id/image_coins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@mipmap/pokecoin"
 
             />
 
         <TextView
+            android:id="@+id/dialogPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"

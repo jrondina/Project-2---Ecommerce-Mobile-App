@@ -18,8 +18,8 @@ public class ShopHolder extends RecyclerView.ViewHolder {
     public ShopHolder(View itemView) {
         super(itemView);
 
-        mPic = (ImageView) itemView.findViewById(R.id.itemPic);
-        mName = (TextView) itemView.findViewById(R.id.itemName);
+        mPic = (ImageView) itemView.findViewById(R.id.dialogPic);
+        mName = (TextView) itemView.findViewById(R.id.dialogName);
         mPrice = (TextView) itemView.findViewById(R.id.itemPrice);
     }
 
