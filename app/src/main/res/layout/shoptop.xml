@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/pokecoin"
             android:maxWidth="38dp"
-            android:maxHeight="38dp" /> //placeholder for coins icon
+            android:maxHeight="38dp" />
         <TextView
             android:id="@+id/shopwallet"
             android:layout_width="wrap_content"
@@ -46,12 +46,23 @@
             />
 
     </LinearLayout>
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:hint="Enter Search Term"
-        />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="10dp"
+            android:hint="Enter Search Term"
+            />
+        <Button
+            android:id="@+id/searchButton"
+            android:text="search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

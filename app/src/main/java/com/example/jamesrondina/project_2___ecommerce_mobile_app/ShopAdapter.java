@@ -2,6 +2,7 @@ package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,10 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public ShopAdapter(int size, List<Item> itemList) {
         this.datasetSize = size;
         shopItems = itemList;
+    }
+
+    public void setDatasetSize(int datasetSize) {
+        this.datasetSize = datasetSize;
     }
 
     public void setHeader(View view) {
@@ -67,14 +72,19 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (position == 0) return;
 
         ShopHolder holder = (ShopHolder) viewHolder;
-        Item currentItem = shopItems.get(position - 1);
+        try{
+            Item currentItem = shopItems.get(position - 1);
 
-        //TODO: setup attributes of item, either switch case here or make helper method
-        holder.setItemPic(currentItem.getmPic());
-        holder.setItemName(currentItem.getmName());
-        holder.setItemPrice(currentItem.getmPrice());
+            holder.setItemPic(currentItem.getmPic());
+            holder.setItemName(currentItem.getmName());
+            holder.setItemPrice(currentItem.getmPrice());
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
 
-        //TODO: clicklistener to launch details dialog
+        }
+
+
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

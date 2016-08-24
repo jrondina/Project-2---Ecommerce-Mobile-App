@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class ShopActivity extends AppCompatActivity {
     private int gold;
 
     private EditText searchEdit;
+    private Button searchButton;
     public String searchQuery;
     private ShopAdapter shopAdapter;
 
@@ -48,7 +50,6 @@ public class ShopActivity extends AppCompatActivity {
 
         final DBHelper helper = DBHelper.getInstance(this);
 
-        itemList = new ArrayList<Item>();
         //debugList();
         searchQuery = "";
         itemList = helper.getShopListFromDB(searchQuery);
@@ -75,30 +76,22 @@ public class ShopActivity extends AppCompatActivity {
         walletText.setText(String.valueOf(gold));
         searchEdit = (EditText) header.findViewById(R.id.search);
         searchQuery = searchEdit.getText().toString();
+        searchButton = (Button) header.findViewById(R.id.searchButton);
 
-        searchEdit.addTextChangedListener(new TextWatcher() {
+        //search
+        //the amount of hackery and kludging it's taking to get this to sorta work LOL
+        View.OnClickListener searchListener = new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //get query from edit text and then query database to filter results
+            public void onClick(View view) {
                 searchQuery = searchEdit.getText().toString();
-
-                //TODO: db query
-                itemList = helper.getShopListFromDB(searchQuery);
+                shopAdapter.shopItems.clear();
+                shopAdapter.shopItems.addAll(helper.getShopListFromDB(searchQuery));
+                shopAdapter.setDatasetSize(shopAdapter.shopItems.size());
                 shopAdapter.notifyDataSetChanged();
-
-
             }
+        };
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        searchButton.setOnClickListener(searchListener);
 
         //set up items adapter
 

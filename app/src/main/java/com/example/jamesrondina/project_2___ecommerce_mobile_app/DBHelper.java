@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
 
@@ -144,6 +145,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Item item = new Item("Name","Desc",0,R.mipmap.pokeballs20);
                 dbItemAttributes(cursor,item);
                 shopList.add(item);
+                Log.d(TAG, "getShopListFromDB: " + item.getmName());
                 cursor.moveToNext();
 
             }
@@ -151,7 +153,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return shopList;
-
     }
 
     private void dbItemAttributes(Cursor cursor, Item item){
