@@ -9,7 +9,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/pokeballs100"
-        android:id="@+id/dialogPic"
+        android:id="@+id/itemPic"
         android:layout_centerHorizontal="true"
         />
 
@@ -19,14 +19,14 @@
         android:layout_marginBottom="5dp"
         android:text="itemName"
         android:textSize="18dp"
-        android:id="@+id/dialogName"
-        android:layout_below="@+id/dialogPic"
+        android:id="@+id/itemName"
+        android:layout_below="@+id/itemPic"
         android:layout_centerHorizontal="true"
         />
 
     <LinearLayout
         android:id="@+id/price_layout"
-        android:layout_below="@+id/dialogName"
+        android:layout_below="@+id/itemName"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,11 +46,11 @@
             android:maxWidth="12dp" />
 
         <TextView
+            android:id="@+id/itemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/itemPrice"
             android:text="itemPrice"
-            android:textSize="14dp"
+            android:textSize="20dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
             />

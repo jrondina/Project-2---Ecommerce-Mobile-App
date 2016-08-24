@@ -7,6 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     
@@ -80,6 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void buildTable(SQLiteDatabase db) {
+
+        //entering data into table
         String[] names = new String[]{"20 Pokeballs", "100 Pokeballs", "200 Pokeballs",
                 "Incense", "8 Incense", "25 Incense", "Lucky Egg", "8 Lucky Eggs", "25 Lucky Eggs",
                 "Lure Module", "8 Lure Modules", "Egg Incubator"};
@@ -106,4 +114,18 @@ public class DBHelper extends SQLiteOpenHelper {
                     "', '" + uses[i] + "', '" + consume[i] + "', '" + pics[i] + "');");
         }
     }
+
+    public List<Item> dbItems(){
+        //Go through database, create an Item for each row, place in list
+
+        List<Item> shopList = new ArrayList<>(10); //TODO: change size to db size
+
+        //while not at the end of db, create a new item and then add it to list
+
+        return shopList;
+
+
+
+    }
+
 }

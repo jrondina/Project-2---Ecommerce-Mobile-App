@@ -8,7 +8,7 @@ package com.example.jamesrondina.project_2___ecommerce_mobile_app.models;
  */
 
 
-public abstract class Item {
+public class Item {
 
     private String mName, mDesc;
     private int mPrice, mPic;

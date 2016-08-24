@@ -1,5 +1,6 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.CartItem;
 import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Cart {
 
-    ArrayList<Item> cartList;
+    ArrayList<CartItem> cartList;
 
     private static Cart ourInstance = new Cart();
 
@@ -21,18 +22,18 @@ public class Cart {
     }
 
     private Cart() {
-        this.cartList = new ArrayList<Item>();
+        this.cartList = new ArrayList<CartItem>();
     }
 
-    public ArrayList<Item> getCart() {
+    public ArrayList<CartItem> getCart() {
         return cartList;
     }
 
-    public void addItem(Item item) {
+    public void addItem(CartItem item) {
         cartList.add(item);
     }
 
-    public void removeItem(Item item) {
+    public void removeItem(CartItem item) {
         cartList.remove(item);
     }
 

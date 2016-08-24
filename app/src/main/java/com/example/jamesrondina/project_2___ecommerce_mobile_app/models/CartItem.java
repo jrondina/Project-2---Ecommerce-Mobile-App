@@ -8,14 +8,9 @@ public class CartItem extends Item {
     private String mName, mDesc;
     private int mPrice, mQty, mPic;
 
-    public CartItem(String mName, String mDesc, int mPrice, int mPic,
-                    String mName1, String mDesc1, int mPrice1, int mQty, int mPic1) {
+
+    public CartItem(String mName, String mDesc, int mPrice, int mPic) {
         super(mName, mDesc, mPrice, mPic);
-        mName = mName1;
-        mDesc = mDesc1;
-        mPrice = mPrice1;
-        this.mQty = mQty;
-        mPic = mPic1;
     }
 
     @Override
@@ -65,4 +60,6 @@ public class CartItem extends Item {
     public void setmPic(int mPic) {
         this.mPic = mPic;
     }
+
+
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.CartItem;
 import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
 
 import java.util.List;
@@ -32,10 +33,14 @@ public class DetailsDialog {
         itemDesc = (TextView) dialogView.findViewById(R.id.dialogDesc);
         itemPrice = (TextView) dialogView.findViewById(R.id.dialogPrice);
 
-        itemPic.setImageResource(items.get(i).getmPic());
-        itemName.setText(items.get(i).getmName());
-        itemDesc.setText(items.get(i).getmDesc());
-        itemPrice.setText(items.get(i).getmPrice());
+        //the i - 1 is there to compensate for the fact that the header is taking up index 0
+
+        final Item currentItem = items.get(i - 1);
+
+        itemPic.setImageResource(currentItem.getmPic());
+        itemName.setText(currentItem.getmName());
+        itemDesc.setText(currentItem.getmDesc());
+        itemPrice.setText(String.valueOf(currentItem.getmPrice()));
 
 
         builder.setView(dialogView)
@@ -43,7 +48,9 @@ public class DetailsDialog {
                 .setPositiveButton("Add to Cart", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //add item to cart
+                        Cart cart = Cart.getInstance();
+                        cart.addItem(itemConvert(currentItem));
+                        Toast.makeText(dialogView.getContext(), "Item added to cart", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -55,6 +62,11 @@ public class DetailsDialog {
 
         final AlertDialog dialog = builder.create();
         dialog.show();
+
+    }
+
+    public CartItem itemConvert(Item item){
+         return new CartItem(item.getmName(),item.getmDesc(),item.getmPrice(),item.getmPic());
 
     }
 }

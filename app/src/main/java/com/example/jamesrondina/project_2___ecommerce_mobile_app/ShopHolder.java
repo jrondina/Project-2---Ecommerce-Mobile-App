@@ -12,14 +12,13 @@ import android.widget.TextView;
 public class ShopHolder extends RecyclerView.ViewHolder {
 
     ImageView mPic;
-    TextView mName;
-    TextView mPrice;
+    TextView mName, mPrice;
 
     public ShopHolder(View itemView) {
         super(itemView);
 
-        mPic = (ImageView) itemView.findViewById(R.id.dialogPic);
-        mName = (TextView) itemView.findViewById(R.id.dialogName);
+        mPic = (ImageView) itemView.findViewById(R.id.itemPic);
+        mName = (TextView) itemView.findViewById(R.id.itemName);
         mPrice = (TextView) itemView.findViewById(R.id.itemPrice);
     }
 
@@ -32,6 +31,6 @@ public class ShopHolder extends RecyclerView.ViewHolder {
     }
 
     public void setItemPrice(int price) {
-        mPrice.setText(price);
+        mPrice.setText(String.valueOf(price));
     }
 }

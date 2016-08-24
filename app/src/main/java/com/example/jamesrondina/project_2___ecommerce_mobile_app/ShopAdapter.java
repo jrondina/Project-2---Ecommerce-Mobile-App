@@ -1,17 +1,13 @@
 package com.example.jamesrondina.project_2___ecommerce_mobile_app;
 
-import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.jamesrondina.project_2___ecommerce_mobile_app.models.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +20,6 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     View headerView;
     View gridItem;
-    Cart cart;
     private int datasetSize;
     List<Item> shopItems;
 
@@ -35,8 +30,9 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public ShopAdapter(int size) {
+    public ShopAdapter(int size, List<Item> itemList) {
         this.datasetSize = size;
+        shopItems = itemList;
     }
 
     public void setHeader(View view) {
@@ -66,65 +62,33 @@ public class ShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
 
         if (position == 0) return;
 
-        //Item item = shopItems.get(position);
-
         ShopHolder holder = (ShopHolder) viewHolder;
+        Item currentItem = shopItems.get(position - 1);
 
         //TODO: setup attributes of item, either switch case here or make helper method
-        /*holder.setItemPic(item.getmPic());
-        holder.setItemName(item.getmName());
-        holder.setItemPrice(item.getmPrice());*/
+        holder.setItemPic(currentItem.getmPic());
+        holder.setItemName(currentItem.getmName());
+        holder.setItemPrice(currentItem.getmPrice());
 
         //TODO: clicklistener to launch details dialog
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Launch Details Dialog", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Launch Details Dialog", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                DetailsDialog dialog = new DetailsDialog();
 
-                //launchItemDetail(item, view).show();
+                dialog.launchItemDetail(view.getContext(), position, shopItems);
+
             }
         });
 
 
     }
-
-    /*
-    private AlertDialog launchItemDetail(final Item item, View view){
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-
-        LayoutInflater inflater = LayoutInflater.from(view.getContext());
-        final View dialogView = inflater.inflate(R.layout.dialog, null);
-
-        builder.setView(dialogView)
-                .setTitle("Item Details")
-                .setPositiveButton("Add to Cart", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        Toast.makeText(dialogView.getRootView().getContext(),
-                                item.getmName() + " added to Cart!", Toast.LENGTH_SHORT).show();
-
-                        cart.addItem(item);
-
-                    }
-                })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-
-        return builder.create();
-    }
-    */
 
 }
 
